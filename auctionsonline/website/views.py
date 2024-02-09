@@ -13,14 +13,6 @@ from website.transactions import increase_bid, remaining_time
 
 
 def index(request):
-    """
-    The main page of the website
-
-    Returns
-    -------
-    HTTPResponse
-        The index page with the current and future auctions.
-    """
     auctions = Auction.objects.filter(time_ending__gte=datetime.now()).order_by('time_starting')
 
     try:
@@ -66,8 +58,9 @@ def bid_page(request, auction_id):
             auction = Auction.objects.filter(id=auction_id)
             if auction[0].time_starting > timezone.now():
                 return index(request)
-            user = User.objects.filter(username=request.session['username'])
-
+            user = User.objects.get(username=request.session['username'])
+            userDetails = UserDetails.objects.get(user_id=user.id)
+            balance = userDetails.balance
             stats = []
             time_left, expired = remaining_time(auction[0])
             stats.append(time_left)  # First element in stats list
@@ -95,7 +88,7 @@ def bid_page(request, auction_id):
             stats.append(chat)
 
             # Getting user's watchlist.
-            w = Watchlist.objects.filter(user_id=user[0])
+            w = Watchlist.objects.filter(user_id=user)
             watchlist = Auction.objects.none()
             for item in w:
                 a = Auction.objects.filter(id=item.auction_id.id)
@@ -104,10 +97,12 @@ def bid_page(request, auction_id):
             return render(request, 'bid.html',
                           {
                               'auction': auction[0],
-                              'user': user[0],
+                              'user': user,  # Remove [0] here
                               'stats': stats,
-                              'watchlist': watchlist
+                              'watchlist': watchlist,
+                              'balance': balance
                           })
+
     except KeyError:
         return index(request)
 
@@ -252,9 +247,14 @@ def watchlist_page(request):
             for item in w:
                 a = Auction.objects.filter(id=item.auction_id.id, time_ending__gte=timezone.now())
                 auctions = list(chain(auctions, a))
+
+            # Get the balance for the user
+            userDetails = UserDetails.objects.get(user_id=user[0].id)
+
             return render(request, 'index.html', {
                 'auctions': auctions,
                 'user': user[0],
+                'balance': userDetails.balance,  # Include balance in the template context
                 'watchlist': auctions
             })
     except KeyError:
@@ -277,8 +277,9 @@ def balance(request):
     """
     try:
         if request.session['username']:
-            user = User.objects.filter(username=request.session['username'])
-            return render(request, 'balance.html', {'user': user[0]})
+            user = User.objects.get(username=request.session['username'])
+            userDetails = UserDetails.objects.get(user_id=user.id)
+            return render(request, 'balance.html', {'user': user, 'balance': userDetails.balance})
     except KeyError:
         return index(request)
 
@@ -353,19 +354,23 @@ def filter_auctions(request, category):
     try:
         if request.session['username']:
             auctions = Auction.objects.filter(time_ending__gte=datetime.now()).order_by('time_starting')
-            user = User.objects.filter(username=request.session['username'])
+            user = User.objects.get(username=request.session['username'])
 
-            w = Watchlist.objects.filter(user_id=user[0])
+            w = Watchlist.objects.filter(user_id=user)
             watchlist = Auction.objects.none()
             for item in w:
                 a = Auction.objects.filter(id=item.auction_id.id)
                 watchlist = list(chain(watchlist, a))
-            print(1)
-            return render(request, 'index.html', {'auctions': f_auctions, 'user': user[0], 'watchlist': watchlist})
-    except:
-        return render(request, 'index.html', {'auctions': tel_auctions})
 
-    return index(request)
+            # Get the balance for the user
+            userDetails = UserDetails.objects.get(user_id=user.id)
+
+            return render(request, 'index.html', {'auctions': f_auctions, 'user': user, 'balance': userDetails.balance,
+                                                  'watchlist': watchlist})
+    except:
+        return render(request, 'index.html', {'auctions': f_auctions})
+
+    return render(request, 'index.html', {'auctions': f_auctions})
 
 
 def register(request):
@@ -447,6 +452,7 @@ def logout_page(request):
 # views.py
 from django.shortcuts import render
 from website.models import Auction
+
 
 def products(request):
     auctions = Auction.objects.all()  # Query your Auction objects here

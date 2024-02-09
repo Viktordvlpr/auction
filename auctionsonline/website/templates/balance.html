@@ -15,7 +15,11 @@
         <h2>Update your Balance</h2>
         <hr>
     </div>
-    
+
+    <div>
+        <p>Your current balance is: {{ balance }}</p> <!-- Add this line to display the current balance -->
+    </div>
+
     <form id="topupform" method="post" action="/website/balance/topup/">{% csrf_token %}
         <div class="form-group">
             <label for="sel1">Select an amount to top-up your balance:</label>
