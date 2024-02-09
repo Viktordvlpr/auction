@@ -1,178 +1,492 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Auctions Online</title>
 
     <!-- Bootstrap 4.0.0 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500&display=swap"
+      rel="stylesheet"
+    />
     <!-- Footer related -->
-    <link rel="stylesheet" href="/static/css/footer.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    />
 
-	<!-- MODAL related - Login -->
-	<link rel="stylesheet" type="text/css" href="/static/css/modal.css">
+    <!-- MODAL related - Login -->
+    <link rel="stylesheet" type="text/css" href="/static/css/modal.css" />
 
+    <link rel="stylesheet" type="text/css" href="/static/css/SOFIA.css" />
 
-	<link rel="stylesheet" type="text/css" href="/static/css/SOFIA.css">
-
-
-	<!-- <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet"> -->
 
     <!-- ICON -->
-    <link rel="icon" href="/static/images/icon.png">
+    <link rel="icon" href="/static/images/icon.png" />
 
     <!-- PAGE CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">    
-    
-</head>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+  </head>
 
-<body>
-
-	<!-- Logo -->
-	<a href="{% url 'website:index' %}"><img src="/static/images/logosite.png" class="logosite" /></a>
-	
+  <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="homebutton" class="navbar-brand" href="{% url 'website:index' %}"><img src="/static/images/home.png" class="logo" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a id="homebutton" class="navbar-brand" href="{% url 'website:index' %}"
+          ><img src="../static/images/logoLourens.png" class="logo"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
 
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link" href="/website/category/laptops/">Laptops</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/website/category/consoles/">Consoles</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/website/category/games/">Games</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/website/category/gadgets/">Gadgets</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/website/category/tvs/">TVs</a>
-            </li>
-        </ul>
-        
         <ul id="right_navbar" class="navbar-nav ml-auto">
-            {% if request.session.username %}
+          {% if request.session.username %} {% include "home.html" %} {% else %}
+          <li class="nav-item open-modal">
+            <a
+              id="login"
+              href="#myModal"
+              class="nav-link trigger-btn loginReg"
+              data-toggle="modal"
+              >Log in</a
+            >
+          </li>
+          <li class="nav-item">
+            <a id="signup" class="nav-link loginReg" href="/website/register/"
+              >Register</a
+            >
+          </li>
 
-                   {% include "home.html" %}
-
-            {% else %}
-            <li class="nav-item open-modal">
-                <a id="login" href="#myModal" class="nav-link trigger-btn" data-toggle="modal">Login</a>
-            </li>
-            <li class="nav-item">
-                <a id="signup" class="nav-link" href="/website/register/">Sign up</a>
-            </li>
-            {% endif %}
+          <li class="nav-item">
+            <a class="profileIcon nav-link">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+          </li>
+          {% endif %}
         </ul>
+      </div>
     </nav>
-	
-	<!-- Ad and replacement -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 remove-padding">
+          <p
+            class="text-start detailsTop"
+            style="font-family: 'Lato', sans-serif"
+          >
+            2024; 07 February - 11 February
+          </p>
+        </div>
+        <div class="col-md-6 remove-padding align-end">
+          <p
+            class="text-end detailsTop"
+            style="font-family: 'Kaisei Tokumin', serif"
+          >
+            286 participants Price in UAH (₴)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg btn-block buttons"
+          >
+            Open Live Chat
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-lg btn-block mt-3 buttons"
+          >
+            Add my lot to the auction
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg btn-block buttons"
+          >
+            Filter
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-lg btn-block mt-3 buttons"
+          >
+            View my lots
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr class="line" />
+
+    <div class="container">
+      <div class="row center-columns">
+        <div class="col-md-6">
+          <div class="row">
+            <!-- First column images -->
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/firstLot.png" class="img-fluid" />
+                <div class="image-number number-center">01</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/secondLot.jpg" class="img-fluid" />
+                <div class="image-number number-center">02</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/thirdLot.jpg" class="img-fluid" />
+                <div class="image-number number-center">03</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/fourthLot.jpg" class="img-fluid" />
+                <div class="image-number number-center">04</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/fifthLot.jpg" class="img-fluid" />
+                <div class="image-number number-center">05</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/sixLot.jpeg" class="img-fluid" />
+                <div class="image-number number-center">06</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="row">
+            <!-- Second column images -->
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/firstLot.png" class="img-fluid" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/secondLot.jpg" class="img-fluid" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/thirdLot.jpg" class="img-fluid" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/fourthLot.jpg" class="img-fluid" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/fifthLot.jpg" class="img-fluid" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="image-container">
+                <img src="../static/images/sixLot.jpeg" class="img-fluid" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="line" />
+    <div class="text-start">
+      <h3 class="bidsHistory" style="font-family: 'Kaisei Tokumin', serif">
+        Recent Bids History:
+      </h3>
+    </div>
+
+    <div class="container mt-5 ml-3">
+      <div class="scrollable-cards">
+        <div class="card">
+          <img
+            src="../static/images/fifthLot.jpg"
+            class="card-img-top"
+            alt="Fifth Lot Image"
+          />
+
+          <div class="card-body">
+            <p class="card-title text-center">Art's Title</p>
+            <div class="mt-5 mb-5">
+              <p class="card-text">Bid: 8 000₴</p>
+              <p class="card-text">By: Eleonora Albertovna</p>
+              <p
+                class="card-text time"
+                style="opacity: 0.6; margin-top: 38px"
+                ;
+              >
+                At 16:37 today
+              </p>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary viewThisLot">View this lot</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="../static/images/fifthLot.jpg"
+            class="card-img-top"
+            alt="Fifth Lot Image"
+          />
+          <div class="card-body">
+            <p class="card-title text-center">Art's Title</p>
+            <div class="mt-5 mb-5">
+              <p class="card-text">Bid: 4 000₴</p>
+              <p class="card-text">By: Vadim Mehmedov</p>
+              <p
+                class="card-text time"
+                style="opacity: 0.6; margin-top: 38px"
+                ;
+              >
+                At 11:58 today
+              </p>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary viewThisLot">View this lot</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            src="../static/images/fifthLot.jpg"
+            class="card-img-top"
+            alt="Fifth Lot Image"
+          />
+          <div class="card-body">
+            <p class="card-title text-center">Art's Title</p>
+            <div class="mt-5 mb-5">
+              <p class="card-text">Bid: 31 000₴</p>
+              <p class="card-text">By: Ali Buyashvili</p>
+
+              <p class="card-text" style="opacity: 0.6; margin-top: 38px" ;>
+                At 23:45 yestarday
+              </p>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary viewThisLot">View this lot</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            src="../static/images/fifthLot.jpg"
+            class="card-img-top"
+            alt="Fifth Lot Image"
+          />
+          <div class="card-body">
+            <p class="card-title text-center">Art's Title</p>
+            <div class="mt-5 mb-5">
+              <p class="card-text">Bid: 6 000₴</p>
+              <p class="card-text">By: Anna Bulieva</p>
+              <p
+                class="card-text time"
+                style="opacity: 0.6; margin-top: 38px"
+                ;
+              >
+                At 21:04 yestarday
+              </p>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary viewThisLot">View this lot</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            src="../static/images/fifthLot.jpg"
+            class="card-img-top"
+            alt="Fifth Lot Image"
+          />
+          <div class="card-body">
+            <p class="card-title text-center">Art's Title</p>
+            <div class="mt-5 mb-5">
+              <p class="card-text">Bid: 4 000₴</p>
+              <p class="card-text">By: Kesha Keniy</p>
+              <p
+                class="card-text time"
+                style="opacity: 0.6; margin-top: 38px"
+                ;
+              >
+                At 17:56 yestarday
+              </p>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary viewThisLot">View this lot</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            src="../static/images/fifthLot.jpg"
+            class="card-img-top"
+            alt="Fifth Lot Image"
+          />
+          <div class="card-body">
+            <p class="card-title text-center">Art's Title</p>
+            <div class="mt-5 mb-5">
+              <p class="card-text">Bid: 31 000₴</p>
+              <p class="card-text">By: Ibraghim Muhaba</p>
+              <p
+                class="card-text time"
+                style="opacity: 0.6; margin-top: 38px"
+                ;
+              >
+                At 13:12 yestarday
+              </p>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary viewThisLot">View this lot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ad and replacement -->
     <div class="d-flex justify-content-center">
+      <!--        <div class="p-2">-->
+      <!--            <img id="aright" src="/static/images/aright.png" class="logosite2" />-->
+      <!--        </div>-->
 
-<!--        <div class="p-2">-->
-<!--            <img id="aright" src="/static/images/aright.png" class="logosite2" />-->
-<!--        </div>-->
-
-        <div class="p-2">
-            <div id="replacement">
-                {% block body %}
-				{% include "products.html" %}
-                {% endblock %}
-            </div>
+      <div class="p-2">
+        <div id="replacement">
+          {% block body %} {% include "products.html" %} {% endblock %}
         </div>
+      </div>
     </div>
 
-     <footer class="footer-distributed">
-        <div class="footer-left">
-            <h3>Auctions<span>online</span></h3>
-            <p class="footer-links">
-                <a href="#">Home</a> ·
-                <a href="#">Blog</a> ·
-                <a href="#">Pricing</a> ·
-                <a href="#">About</a> ·
-                <a href="#">Faq</a> ·
-                <a href="#">Contact</a>
-            </p>
-            <p class="footer-company-name">Auctions Online &copy; 2018</p>
-        </div>
-        <div class="footer-center">
-            <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span>Papasiopoulou 2-4</span> Lamia, Greece</p>
-            </div>
-
-            <div>
-                <i class="fa fa-phone"></i>
-                <p>+0030 2231 066900</p>
-            </div>
-
-            <div>
-                <i class="fa fa-envelope"></i>
-                <p><a href="mailto:admin@auctionson.com">admin@auctionson.com</a></p>
-            </div>
+    <footer class="footer-distributed">
+      <div class="footer-left">
+        <h3>Auctions<span>online</span></h3>
+        <p class="footer-links">
+          <a href="#">Home</a> · <a href="#">Blog</a> ·
+          <a href="#">Pricing</a> · <a href="#">About</a> ·
+          <a href="#">Faq</a> ·
+          <a href="#">Contact</a>
+        </p>
+        <p class="footer-company-name">Auctions Online &copy; 2018</p>
+      </div>
+      <div class="footer-center">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span>Papasiopoulou 2-4</span> Lamia, Greece</p>
         </div>
 
-        <div class="footer-right">
-            <p id="about_store" class="footer-company-about">
-                <span>About the store</span>
-
-            </p>
-            <div class="footer-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-google"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-            </div>
-            <p id="payment_methods" class="footer-company-about">
-                <span>Payment methods</span>
-            </p>
-            <div class="footer-icons">
-                <a href="#"><i class="fa fa-cc-visa"></i></a>
-                <a href="#"><i class="fa fa-cc-paypal"></i></a>
-            </div>
+        <div>
+          <i class="fa fa-phone"></i>
+          <p>+0030 2231 066900</p>
         </div>
-    </footer>   
-	
-	<!-- Login MODAL -->
-	<div id="myModal" class="modal fade text-center">
-        <div class="modal-dialog">
-            <div class="col-lg-8 col-sm-8 col-12 main-section">
-                <div class="modal-content">
-                    <div class="col-lg-12 col-sm-12 col-12 user-img">
-                        <img src="/static/images/man.png">
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-12 user-name">
-                        <h1>User Login</h1>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-12 form-input">
-                        <form method="post" action="/website/login/">{% csrf_token %}
-                            <div class="form-group">
-                                <input name="username" type="text" class="form-control" placeholder="Enter username">
-                            </div>
-                            <div class="form-group">
-                                <input name="password" type="password" class="form-control" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-12 link-part">
-                        <a href="http://www.nicesnippets.com" target="_blank">Forgot Password?</a>
-                    </div>
+
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="mailto:admin@auctionson.com">admin@auctionson.com</a></p>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <p id="about_store" class="footer-company-about">
+          <span>About the store</span>
+        </p>
+        <div class="footer-icons">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <p id="payment_methods" class="footer-company-about">
+          <span>Payment methods</span>
+        </p>
+        <div class="footer-icons">
+          <a href="#"><i class="fa fa-cc-visa"></i></a>
+          <a href="#"><i class="fa fa-cc-paypal"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Login MODAL -->
+    <div id="myModal" class="modal fade text-center">
+      <div class="modal-dialog">
+        <div class="col-lg-8 col-sm-8 col-12 main-section">
+          <div class="modal-content">
+            <div class="col-lg-12 col-sm-12 col-12 user-img">
+              <img src="/static/images/man.png" />
+            </div>
+            <div class="col-lg-12 col-sm-12 col-12 user-name">
+              <h1>User Login</h1>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="col-lg-12 col-sm-12 col-12 form-input">
+              <form method="post" action="/website/login/">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input
+                    name="username"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter username"
+                  />
                 </div>
+                <div class="form-group">
+                  <input
+                    name="password"
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+              </form>
             </div>
+            <div class="col-lg-12 col-sm-12 col-12 link-part">
+              <a href="http://www.nicesnippets.com" target="_blank"
+                >Forgot Password?</a
+              >
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
