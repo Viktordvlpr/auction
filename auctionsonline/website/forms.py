@@ -1,5 +1,6 @@
 from django import forms
 
+
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=45)
     email = forms.EmailField()
@@ -13,13 +14,15 @@ class RegistrationForm(forms.Form):
     postcode = forms.CharField(max_length=45)
     country = forms.CharField(max_length=45)
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=45)
     password = forms.CharField(max_length=45)
 
+
 class TopUpForm(forms.Form):
     amount = forms.DecimalField(max_digits=6, decimal_places=2)
 
+
 class CommentForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
-
