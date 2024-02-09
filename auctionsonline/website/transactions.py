@@ -2,6 +2,9 @@ from website.models import UserDetails, Auction, Bid
 from django.utils import timezone
 from datetime import datetime, timedelta
 
+
+from decimal import Decimal
+
 def increase_bid(user, auction):
     """
     Removes €1.0 from user.
@@ -10,19 +13,24 @@ def increase_bid(user, auction):
 
     Parameters
     ----------
-    auction : class 'website.models.Auction
+    auction : class 'website.models.Auction'
     """
-    userDetails = UserDetails.objects.filter(user_id=user.id)
-    userDetails.balance = float(user.balance) - 1.0
-    user.save()
-    bid = Bid()
-    bid.user_id = user
-    bid.auction_id = auction
-    bid.bid_time = timezone.now()
-    bid.save()
+    # Fetch the UserDetails associated with the user
+    userDetails = UserDetails.objects.get(user_id=user.id)
+    # Deduct 1.0 from the user's balance
+    userDetails.balance -= Decimal('1.0')  # Use Decimal object for consistency
+    userDetails.save()  # Save the updated balance to the database
+
+    # Create a new Bid record
+    bid = Bid.objects.create(user_id=user, auction_id=auction, bid_time=timezone.now())
+
+    # Increase the auction's number of bids
     auction.number_of_bids += 1
     auction.time_ending = timezone.now() + timedelta(minutes=5)
     auction.save()
+
+
+
 
 def remaining_time(auction):
     """
@@ -51,5 +59,5 @@ def remaining_time(auction):
     seconds = seconds % 60
     time_left = str(minutes) + "m " + str(seconds) + "s"
     expired = days
-    
+
     return time_left, expired

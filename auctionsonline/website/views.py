@@ -147,9 +147,9 @@ def raise_bid(request, auction_id):
     Increases the bid of the selected auction
     and returns to the bidding page.
 
-    Parametes
-    ---------
-    auction_id : class 'int'
+    Parameters
+    ----------
+    auction_id : int
 
     Returns
     -------
@@ -167,7 +167,7 @@ def raise_bid(request, auction_id):
     try:
         if request.session['username']:
             user = User.objects.get(username=request.session['username'])
-            userDetails = UserDetails.objects.filter(user_id=user.id)
+            userDetails = UserDetails.objects.get(user_id=user.id)
             if userDetails.balance > 0.0:
                 latest_bid = Bid.objects.filter(auction_id=auction.id).order_by('-bid_time')
                 if not latest_bid:
@@ -182,6 +182,7 @@ def raise_bid(request, auction_id):
         return index(request)
 
     return bid_page(request, auction_id)
+
 
 
 def register_page(request):
