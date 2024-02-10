@@ -12,7 +12,12 @@
     height: 15vw;
     object-fit: cover;
 }
-            
+         
+.card-title, .card-text {
+    height: 25px;
+    overflow: hidden;
+}
+
 /* show 4 items per row */ 
 .carousel-inner .active,
 .carousel-inner .active + .carousel-item,
