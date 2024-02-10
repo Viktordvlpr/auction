@@ -27,16 +27,43 @@
             {% endif %}
         {% endif %}
             <div class="card">
+             <!-- like BUTTON -->
+            <div class="card-body">
+                <button type="button" class=" like-btn btn btn-outline-primary watch_button" onclick="location.href='/website/watchlist/{{auction.id}}'">
+
+
+
+
+                    {% if watchlist %}
+                        {% if watchlist|search:auction.id%}
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white svg-unfill" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+    <path d="m12.7 20.7 6.2-7.1c2.7-3 2.6-6.5.8-8.7A5 5 0 0 0 16 3c-1.3 0-2.7.4-4 1.4A6.3 6.3 0 0 0 8 3a5 5 0 0 0-3.7 1.9c-1.8 2.2-2 5.8.8 8.7l6.2 7a1 1 0 0 0 1.4 0Z"/>
+  </svg>
+                        {% else %}
+
+                                                       <svg class="w-6 h-6 text-gray-800 dark:text-white svg-fill" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
+  </svg>
+                        {% endif %}
+                    {% else %}
+                                                       <svg class="w-6 h-6 text-gray-800 dark:text-white svg-fill" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
+  </svg>
+                    {% endif %}
+                </button>
                 <img class="card-img-top img-fluid" src='/media/{{ auction.product_id.image }}' alt="Card image cap">
+            </div>
+
+
                 <div class="card-body">
                     <div id="item_name">
-                        <h4 class="card-title text-center">{{ auction.product_id.title }}</h4><hr>
+                        <h4 class="card-title text-center">{{ auction.product_id.title }}</h4>
                     </div>
-                    <p class="card-text">{{ auction.product_id.description }}</p>
+                    <p class="card-text card-desc">{{ auction.product_id.description }}</p>
                     {% if todays_date > auction.time_starting|date:'Y-m-d-H-i-s' %}
-                    <h4 class="card-title text-center">€{{auction|current_price}}</h4>
+                    <h4 class="card-title text-center card-price">€{{auction|current_price}}</h4>
                     {% endif %}
-                    <p class="card-text"><small class="text-muted"> 
+                    <p class="text-info card-text"><small class="text-muted">
                     {% if todays_date > auction.time_starting|date:'Y-m-d-H-i-s' %}
                     Auction ends in: {{ auction.time_ending|time_left }}
                     {% else %}
@@ -52,18 +79,8 @@
                     </div>
                     {% endif %}
                     <div>
-                        <!-- WATCH BUTTON -->
-                        <button type="button" class="btn btn-outline-primary watch_button" onclick="location.href='/website/watchlist/{{auction.id}}'">
-                        {% if watchlist %}
-                            {% if watchlist|search:auction.id%}
-                            Unwatch
-                            {% else %}
-                            Watch
-                            {% endif %}
-                        {% else %}
-                            Watch
-                        {% endif %}
-                        </button>
+
+
                     </div>
                 </div>
             </div>

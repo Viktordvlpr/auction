@@ -1,17 +1,55 @@
-.navbar {
-    margin-left: 30px;
-    margin-right: 38px;
-    border-top: 1px solid #BEC4D0;
-    border-bottom: 1px solid #BEC4D0;
+body {
+    background-color: #351D0F !important;
 }
-        
-.logosite {
-    height: 25%;
-    width: 25%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 80px;
+.nav-header #left_navbar{
+    margin: 0 !important;
 }
+.nav-header {
+    background-color: #8B6849;
+    border-radius: 0 0 30% 30%;
+    padding: 20px 60px 30px 60px;
+}
+
+.nav-header .navbar-brand {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+}
+.nav-header .nav-row {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.nav-header .nav-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.nav-header .nav-mid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+.nav-header .nav-mid a{
+ color: white;
+    font-size: 16px;
+}
+.nav-header .nav-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+.nav-header .nav-end a{
+    color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin: 0 7.5px;
+    padding: 7.5px 20px !important;
+}
+
         
 #aright {
     left: 0;
@@ -23,3 +61,97 @@
 #replacement {
     margin-left: 160px;
 }
+
+.main-products {
+    width: 100%;
+    padding: 40px 60px;
+}
+.main-products .p-2{
+    width: 100%;
+    display: flex;
+    padding: 0;
+}
+.main-products .p-2 #replacement {
+    margin: 0;
+    padding: 0;
+}
+.main-products .p-2 #replacement  .container-fluid {
+    margin: 0;
+    padding: 0;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card{
+   background-color: #8B6849;
+    padding: 30px;
+    border-radius: 30px;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body {
+    padding: 0;
+    position: relative;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .like-btn{
+    padding: 0;
+    border: none;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    bottom: 0px;
+    right: 0px;
+    color: #CCBD7A;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .like-btn:hover {
+    background-color: transparent !important;
+
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .like-btn:hover .svg-fill{
+    color: #CCBD7A;
+    fill: #CCBD7A;
+}
+
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .card-title {
+    color: white;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body #item_name {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .card-text {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    margin-bottom: 0;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .card-text {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    margin-bottom: 0;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .card-price {
+    font-size: 28px;
+    padding: 0 10px;
+    margin: 15px 0;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body  .card-desc {
+    padding: 5px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-radius: 7px;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .text-info {
+    color: white !important;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .text-info  .text-muted {
+    color: white !important;
+}
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .bid_now_button {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 10px 15px;
+}
+
+
+
