@@ -48,7 +48,7 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a id="homebutton" class="navbar-brand" href="{% url 'website:index' %}"
-          ><img src="../static/images/logoLourens.png" class="logo"
+          ><img src="../static/images/logoPng.png" class="logo"
         /></a>
         <button
           class="navbar-toggler"
@@ -143,45 +143,48 @@
     </div>
     <hr class="line" />
 
-    <div class="container">
+    <div class="container photoColumns">
       <div class="row center-columns">
         <div class="col-md-6">
           <div class="row">
             <!-- First column images -->
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/firstLot.png" class="img-fluid" />
                 <div class="image-number number-center">01</div>
+                <img
+                  src="../static/images/firstLot.png"
+                  class="img-fluid artLots"
+                />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/secondLot.jpg" class="img-fluid" />
                 <div class="image-number number-center">02</div>
+                <img src="../static/images/secondLot.jpg" class="img-fluid" />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/thirdLot.jpg" class="img-fluid" />
                 <div class="image-number number-center">03</div>
+                <img src="../static/images/thirdLot.jpg" class="img-fluid" />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/fourthLot.jpg" class="img-fluid" />
                 <div class="image-number number-center">04</div>
+                <img src="../static/images/fourthLot.jpg" class="img-fluid" />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/fifthLot.jpg" class="img-fluid" />
                 <div class="image-number number-center">05</div>
+                <img src="../static/images/fifthLot.jpg" class="img-fluid" />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/sixLot.jpeg" class="img-fluid" />
                 <div class="image-number number-center">06</div>
+                <img src="../static/images/sixLot.jpg" class="img-fluid" />
               </div>
             </div>
           </div>
@@ -192,32 +195,50 @@
             <!-- Second column images -->
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/firstLot.png" class="img-fluid" />
+                <img
+                  src="../static/images/firstLot.png"
+                  class="img-fluid secondColumnLots"
+                />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/secondLot.jpg" class="img-fluid" />
+                <img
+                  src="../static/images/secondLot.jpg"
+                  class="img-fluid secondColumnLots"
+                />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/thirdLot.jpg" class="img-fluid" />
+                <img
+                  src="../static/images/thirdLot.jpg"
+                  class="img-fluid secondColumnLots"
+                />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/fourthLot.jpg" class="img-fluid" />
+                <img
+                  src="../static/images/fourthLot.jpg"
+                  class="img-fluid secondColumnLots"
+                />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/fifthLot.jpg" class="img-fluid" />
+                <img
+                  src="../static/images/fifthLot.jpg"
+                  class="img-fluid secondColumnLots"
+                />
               </div>
             </div>
             <div class="col-12">
               <div class="image-container">
-                <img src="../static/images/sixLot.jpeg" class="img-fluid" />
+                <img
+                  src="../static/images/sixLot.jpg"
+                  class="img-fluid secondColumnLots"
+                />
               </div>
             </div>
           </div>
@@ -236,25 +257,21 @@
       <div class="scrollable-cards">
         <div class="card">
           <img
-            src="../static/images/fifthLot.jpg"
+            src="../static/images/thirdLot.jpg"
             class="card-img-top"
             alt="Fifth Lot Image"
           />
 
           <div class="card-body">
             <p class="card-title text-center">Art's Title</p>
-            <div class="mt-5 mb-5">
+            <div class="mt-4">
               <p class="card-text">Bid: 8 000₴</p>
               <p class="card-text">By: Eleonora Albertovna</p>
-              <p
-                class="card-text time"
-                style="opacity: 0.6; margin-top: 38px"
-                ;
-              >
+              <p class="card-text time" style="opacity: 0.6; margin-top: 28px">
                 At 16:37 today
               </p>
             </div>
-            <div class="text-center">
+            <div class="text-center" style="margin-top: 34px">
               <button class="btn btn-primary viewThisLot">View this lot</button>
             </div>
           </div>
@@ -267,18 +284,14 @@
           />
           <div class="card-body">
             <p class="card-title text-center">Art's Title</p>
-            <div class="mt-5 mb-5">
+            <div class="mt-4">
               <p class="card-text">Bid: 4 000₴</p>
               <p class="card-text">By: Vadim Mehmedov</p>
-              <p
-                class="card-text time"
-                style="opacity: 0.6; margin-top: 38px"
-                ;
-              >
+              <p class="card-text time" style="opacity: 0.6; margin-top: 28px">
                 At 11:58 today
               </p>
             </div>
-            <div class="text-center">
+            <div class="text-center" style="margin-top: 34px">
               <button class="btn btn-primary viewThisLot">View this lot</button>
             </div>
           </div>
@@ -286,21 +299,21 @@
 
         <div class="card">
           <img
-            src="../static/images/fifthLot.jpg"
+            src="../static/images/firstLot.png"
             class="card-img-top"
             alt="Fifth Lot Image"
           />
           <div class="card-body">
             <p class="card-title text-center">Art's Title</p>
-            <div class="mt-5 mb-5">
+            <div class="mt-4">
               <p class="card-text">Bid: 31 000₴</p>
               <p class="card-text">By: Ali Buyashvili</p>
 
-              <p class="card-text" style="opacity: 0.6; margin-top: 38px" ;>
+              <p class="card-text" style="opacity: 0.6; margin-top: 28px">
                 At 23:45 yestarday
               </p>
             </div>
-            <div class="text-center">
+            <div class="text-center" style="margin-top: 34px">
               <button class="btn btn-primary viewThisLot">View this lot</button>
             </div>
           </div>
@@ -308,24 +321,24 @@
 
         <div class="card">
           <img
-            src="../static/images/fifthLot.jpg"
+            src="../static/images/thirdLot.jpg"
             class="card-img-top"
             alt="Fifth Lot Image"
           />
           <div class="card-body">
             <p class="card-title text-center">Art's Title</p>
-            <div class="mt-5 mb-5">
+            <div class="mt-4">
               <p class="card-text">Bid: 6 000₴</p>
               <p class="card-text">By: Anna Bulieva</p>
               <p
                 class="card-text time"
-                style="opacity: 0.6; margin-top: 38px"
+                style="opacity: 0.6; margin-top: 28px"
                 ;
               >
                 At 21:04 yestarday
               </p>
             </div>
-            <div class="text-center">
+            <div class="text-center" style="margin-top: 34px">
               <button class="btn btn-primary viewThisLot">View this lot</button>
             </div>
           </div>
@@ -339,18 +352,18 @@
           />
           <div class="card-body">
             <p class="card-title text-center">Art's Title</p>
-            <div class="mt-5 mb-5">
+            <div class="mt-4">
               <p class="card-text">Bid: 4 000₴</p>
               <p class="card-text">By: Kesha Keniy</p>
               <p
                 class="card-text time"
-                style="opacity: 0.6; margin-top: 38px"
+                style="opacity: 0.6; margin-top: 28px"
                 ;
               >
                 At 17:56 yestarday
               </p>
             </div>
-            <div class="text-center">
+            <div class="text-center" style="margin-top: 34px">
               <button class="btn btn-primary viewThisLot">View this lot</button>
             </div>
           </div>
@@ -358,24 +371,24 @@
 
         <div class="card">
           <img
-            src="../static/images/fifthLot.jpg"
+            src="../static/images/firstLot.png"
             class="card-img-top"
             alt="Fifth Lot Image"
           />
           <div class="card-body">
             <p class="card-title text-center">Art's Title</p>
-            <div class="mt-5 mb-5">
+            <div class="mt-4">
               <p class="card-text">Bid: 31 000₴</p>
               <p class="card-text">By: Ibraghim Muhaba</p>
               <p
                 class="card-text time"
-                style="opacity: 0.6; margin-top: 38px"
+                style="opacity: 0.6; margin-top: 28px"
                 ;
               >
                 At 13:12 yestarday
               </p>
             </div>
-            <div class="text-center">
+            <div class="text-center" style="margin-top: 34px">
               <button class="btn btn-primary viewThisLot">View this lot</button>
             </div>
           </div>
@@ -396,38 +409,29 @@
       </div>
     </div>
 
-    <footer class="footer-distributed">
+    <footer class="footer-distributed footer">
       <div class="footer-left">
-        <h3>Auctions<span>online</span></h3>
+        <img src="../static/images/logoPng.png" class="logo" />
         <p class="footer-links">
-          <a href="#">Home</a> · <a href="#">Blog</a> ·
-          <a href="#">Pricing</a> · <a href="#">About</a> ·
-          <a href="#">Faq</a> ·
-          <a href="#">Contact</a>
+          <a href="#">Homepage</a> · <a href="#">Open Live Chat</a> ·
+          <a href="#">Add my lot to the auction</a> ·
+          <a href="#">View my lots</a>
         </p>
-        <p class="footer-company-name">Auctions Online &copy; 2018</p>
+        <p class="footer-company-name">Louren's Charity Auction &copy; 2024</p>
       </div>
       <div class="footer-center">
         <div>
-          <i class="fa fa-map-marker"></i>
-          <p><span>Papasiopoulou 2-4</span> Lamia, Greece</p>
-        </div>
-
-        <div>
           <i class="fa fa-phone"></i>
-          <p>+0030 2231 066900</p>
+          <p>+380(00)-000-0000</p>
         </div>
 
         <div>
           <i class="fa fa-envelope"></i>
-          <p><a href="mailto:admin@auctionson.com">admin@auctionson.com</a></p>
+          <p><a href="mailto:admin@auctionson.com">lourens@auction.ua</a></p>
         </div>
       </div>
 
       <div class="footer-right">
-        <p id="about_store" class="footer-company-about">
-          <span>About the store</span>
-        </p>
         <div class="footer-icons">
           <a href="#"><i class="fa fa-facebook"></i></a>
           <a href="#"><i class="fa fa-google"></i></a>

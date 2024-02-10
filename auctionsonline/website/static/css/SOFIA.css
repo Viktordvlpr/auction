@@ -72,8 +72,15 @@ body {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.center-columns {
+
+.photoColumns {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8%;
+}
+
+.center-columns {
   justify-content: center;
 }
 
@@ -83,17 +90,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.secondColumnLots {
+  opacity: 31%;
 }
 .center-columns {
   justify-content: center;
 }
-.image-container {
-  max-width: 100%;
-  max-height: 100%;
-  position: relative;
+.col-12 {
+  margin-bottom: 39px;
 }
 .image-number {
-  margin-top: 10px;
+  margin-top: -30px;
   position: absolute;
   font-size: 148px;
   color: white;
@@ -102,7 +111,7 @@ body {
 
 .number-center {
   top: 50%;
-  left: 120%;
+  left: 116%;
   text-align: center;
   transform: translate(-50%, -50%);
   position: absolute;
@@ -120,8 +129,8 @@ body {
 }
 .card {
   background-color: var(--ligthBrown);
-  width: 472px;
-  height: 605px;
+  width: 370px;
+  height: 515px;
   border-radius: 15px;
   box-shadow: 20px 15px 20px rgba(0, 0, 0, 0.2);
   margin-right: 25px;
@@ -140,13 +149,14 @@ body {
 }
 .card-text {
   margin-bottom: 5px;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 }
 .card-title {
-  font-size: 32px;
+  margin-top: -14px;
+  margin-bottom: 46px;
+  font-size: 26px;
   color: var(--light);
-  margin-top: 20px;
   font-family: "Kaisei Tokumin", serif;
 }
 .time {
@@ -154,8 +164,9 @@ body {
   opacity: 0.6;
 }
 .viewThisLot {
+  margin-top: 10px;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   padding: 10px;
   border: 2px solid white;
   border-radius: 0;
@@ -185,4 +196,10 @@ body {
 
 ::-webkit-scrollbar-track {
   background-color: var(--middle);
+}
+.footer {
+  background-color: var(--middle);
+}
+.photoColumns {
+  left: 60px;
 }
