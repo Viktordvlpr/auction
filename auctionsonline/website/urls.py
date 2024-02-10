@@ -19,4 +19,6 @@ urlpatterns = [
     path('bid/<int:auction_id>/raise_bid/', views.raise_bid, name='raise_bid'),
     path('products/', views.products, name='products'),
 
+    path('my_auctions/', views.my_auctions_panel, name='my_bids')
+
 ]

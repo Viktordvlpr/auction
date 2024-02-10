@@ -458,3 +458,7 @@ from website.models import Auction
 def products(request):
     auctions = Auction.objects.all()  # Query your Auction objects here
     return render(request, 'products.html', {'auctions': auctions})
+
+
+def my_auctions_panel(request):
+    return render(request, 'my_auctions_panel.html')
