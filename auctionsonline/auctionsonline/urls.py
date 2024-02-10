@@ -6,5 +6,5 @@ from docutils.nodes import document
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('website.urls'))
+    path('website/', include('website.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
