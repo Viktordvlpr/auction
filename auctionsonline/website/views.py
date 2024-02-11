@@ -1,16 +1,15 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from django.utils import timezone
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseBadRequest
 from datetime import datetime
 from itertools import chain
 
 from website.forms import *
 from website.models import Product, Auction, Watchlist, Bid, Chat, UserDetails
 
-from website.validation import validate_login, validate_registration
+from website.validation import validate_login, validate_registration, session_check
 from website.transactions import increase_bid, remaining_time
 
 
@@ -427,14 +426,14 @@ def login_page(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            is_valid = validate_login(
+            user = validate_login(
                 form.cleaned_data['username'],
                 form.cleaned_data['password']
             )
-            if is_valid:
-                # Creates a session with 'form.username' as key.
-                request.session['username'] = form.cleaned_data['username']
-                
+            if user:
+                request.session['username'] = user.username
+                request.session['user_id'] = user.id
+
     return index(request)
 
 
@@ -463,7 +462,7 @@ def products(request):
     auctions = Auction.objects.all()  # Query your Auction objects here
     return render(request, 'products.html', {'auctions': auctions})
 
-@login_required
+@session_check
 def my_auctions_panel(request):
     """
     Render the 'my_auctions_panel.html' template.
@@ -480,7 +479,7 @@ def my_auctions_panel(request):
     """
     return render(request, 'auctions_panel/dashboard.html')
 
-@login_required
+@session_check
 def create_auctions_panel(request):
     """
     Render the 'auction_panel.html' template.
@@ -495,9 +494,10 @@ def create_auctions_panel(request):
     Returns:
         HttpResponse: The rendered template response.
     """
-    return render(request, 'auctions_panel/auction_panel.html')
+    user_products = Product.objects.filter(owner=request.session['user_id'])
+    return render(request, 'auctions_panel/auction_panel.html', {'user_products': user_products})
 
-@login_required
+@session_check
 def create_product_panel(request):
     """
     Render the 'product_panel.html' template.
@@ -512,9 +512,9 @@ def create_product_panel(request):
     Returns:
         HttpResponse: The rendered template response.
     """
-    return render(request, 'auctions_panel/product_panel.html')
+    return render(request, 'auctions_panel/product_panel.html' )
 
-@login_required
+@session_check
 def create_auction(request):
     """
     Create a new auction if the request is a POST and the form is valid.
@@ -535,11 +535,14 @@ def create_auction(request):
         form = AuctionForm(request.POST, request.FILES)
         if form.is_valid():
             auction = form.save(commit=False)
-            auction.owner = request.session['username']
-            auction.save()
-            return redirect('my_actions_panel')
+            user_id = request.session.get('user_id')
+            if user_id:
+                user = User.objects.get(pk=user_id)
+                auction.owner = user 
+                auction.save()
+                return redirect('/website/auctions_dashboard/')
         else: 
-            return HttpResponseBadRequest("Invalid form data")
+            return redirect("/website/auctions_dashboard/")
     else:
         return HttpResponseBadRequest("User not authenticated")
             
@@ -560,10 +563,10 @@ def all_user_auction(request):
         HttpResponse: The rendered 'my_auctions.html' template with the
                       user's auctions.
     """
-    user_auctions = Auction.objects.filter(owner=request.user)
+    user_auctions = Auction.objects.filter(owner=request.session['user_id'])
     return render(request, 'auctions_panel/my_auctions.html', {'user_auctions': user_auctions})
 
-@login_required
+@session_check
 def create_product(request):
     """
     Create a new product if the request is a POST and the form is valid.
@@ -579,13 +582,16 @@ def create_product(request):
     """
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
-        print(request.user)
-        print(request.session['username'])
         if form.is_valid():
             product = form.save(commit=False)
-            product.owner = request.user
-            product.save()
-            return redirect('/website/my_auctions/')
+            user_id = request.session.get('user_id')
+            if user_id:
+                user = User.objects.get(pk=user_id)
+                product.owner = user 
+                product.save()
+                return redirect('/website/auctions_dashboard/')
+            else:
+                return HttpResponseForbidden("User ID not found in session")
         else:
             return HttpResponseForbidden("Invalid form data")
     else:
@@ -606,6 +612,6 @@ def my_products(request):
         HttpResponse: The rendered 'auction_panel.html' template with the
                       user's products.
     """
-    user_products = Product.objects.filter(owner=request.user)
+    user_products = Product.objects.filter(owner=request.session['user_id'])
     return render(request, 'auctions_panel/auction_panel.html', {'user_products': user_products})
     
