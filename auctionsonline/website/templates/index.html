@@ -10,7 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-
+    <!-- PAGE CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
     <!-- Footer related -->
     <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -27,24 +28,19 @@
     <!-- ICON -->
     <link rel="icon" href="/static/images/icon.png">
 
-    <!-- PAGE CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">    
+
     
 </head>
 
 <body>
-
-	<!-- Logo -->
-	<a href="{% url 'website:index' %}"><img src="/static/images/logosite.png" class="logosite" /></a>
-	
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="homebutton" class="navbar-brand" href="{% url 'website:index' %}"><img src="/static/images/home.png" class="logo" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg nav-header">
+        <ul id="left_navbar" class="navbar-nav nav-row nav-start ml-auto">
+             <a  class="navbar-brand" href="{% url 'website:index' %}"><img src="/static/images/logosite.png" class="logosite" /></a>
+        </ul>
 
-        <ul class="nav nav-pills">
+
+        <ul class="nav nav-pills nav-row nav-mid">
             <li class="nav-item">
                 <a class="nav-link" href="/website/category/laptops/">Laptops</a>
             </li>
@@ -62,7 +58,7 @@
             </li>
         </ul>
         
-        <ul id="right_navbar" class="navbar-nav ml-auto">
+        <ul id="right_navbar" class="nav-row navbar-nav nav-end  ml-auto">
             {% if request.session.username %}
 
                    {% include "home.html" %}
@@ -79,7 +75,7 @@
     </nav>
 	
 	<!-- Ad and replacement -->
-    <div class="d-flex justify-content-center">
+    <div class="main-products d-flex justify-content-center">
 
 <!--        <div class="p-2">-->
 <!--            <img id="aright" src="/static/images/aright.png" class="logosite2" />-->
@@ -96,31 +92,25 @@
 
      <footer class="footer-distributed">
         <div class="footer-left">
-            <h3>Auctions<span>online</span></h3>
-            <p class="footer-links">
-                <a href="#">Home</a> ·
-                <a href="#">Blog</a> ·
-                <a href="#">Pricing</a> ·
-                <a href="#">About</a> ·
-                <a href="#">Faq</a> ·
-                <a href="#">Contact</a>
-            </p>
-            <p class="footer-company-name">Auctions Online &copy; 2018</p>
+            <div id="footer-left" class="navbar-nav nav-row nav-start ml-auto">
+                 <a  class="navbar-brand" href="{% url 'website:index' %}"><img src="/static/images/logosite.png" class="logosite" /></a>
+            </div>
+            <div class="footer-links">
+              <a class="footer-link" href="/website/watchlist/">Liked items</a>
+            </div>
+
+            <p class="footer-company-name">Auctions Online &copy; 2024</p>
         </div>
         <div class="footer-center">
-            <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span>Papasiopoulou 2-4</span> Lamia, Greece</p>
-            </div>
 
             <div>
                 <i class="fa fa-phone"></i>
-                <p>+0030 2231 066900</p>
+                <a href="tel:+380951338999">+380 95 1338 999</a>
             </div>
 
             <div>
                 <i class="fa fa-envelope"></i>
-                <p><a href="mailto:admin@auctionson.com">admin@auctionson.com</a></p>
+                <a href="mailto:lourenceauctions@gmail.com">lourenceauctions@gmail.com</a>
             </div>
         </div>
 
