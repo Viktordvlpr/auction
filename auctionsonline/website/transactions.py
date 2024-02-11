@@ -2,8 +2,8 @@ from website.models import UserDetails, Auction, Bid
 from django.utils import timezone
 from datetime import datetime, timedelta
 
-
 from decimal import Decimal
+
 
 def increase_bid(user, auction):
     """
@@ -28,8 +28,6 @@ def increase_bid(user, auction):
     auction.number_of_bids += 1
     auction.time_ending = timezone.now() + timedelta(minutes=5)
     auction.save()
-
-
 
 
 def remaining_time(auction):

@@ -28,10 +28,12 @@ class TopUpForm(forms.Form):
 class CommentForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
 
+
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['title', 'image', 'description', 'quantity', 'category']
+
 
 class AuctionForm(forms.ModelForm):
     class Meta:
