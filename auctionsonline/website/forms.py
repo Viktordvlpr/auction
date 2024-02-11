@@ -1,4 +1,5 @@
 from django import forms
+from .models import Product, Auction
 
 
 class RegistrationForm(forms.Form):
@@ -26,3 +27,13 @@ class TopUpForm(forms.Form):
 
 class CommentForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['title', 'image', 'description', 'quantity', 'category']
+
+class AuctionForm(forms.ModelForm):
+    class Meta:
+        model = Auction
+        fields = ['product_id', 'number_of_bids', 'time_starting', 'time_ending']

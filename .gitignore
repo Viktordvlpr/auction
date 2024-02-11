@@ -1,0 +1,24 @@
+### Django ###
+*.db
+.DS_Store
+.git
+.idea
+.pytest_cache
+.vscode
+*.egg-info
+.env
+
+### Python ###
+__pycache__
+*.pyc
+/__pycache__/
+
+### Poetry ###
+.venv
+poetry.lock
+/node_modules/
+*.lock
+
+### Other ###
+images/
+migrations/

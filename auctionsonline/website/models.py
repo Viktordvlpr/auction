@@ -35,12 +35,14 @@ class Product(models.Model):
         choices=CATEGORIES
     )
     date_posted = models.DateTimeField(auto_now_add=True, blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return "ID:" + str(self.pk) + " " + self.title
 
 
 class Auction(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     number_of_bids = models.IntegerField()
     time_starting = models.DateTimeField()

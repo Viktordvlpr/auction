@@ -19,4 +19,13 @@ urlpatterns = [
     path('bid/<int:auction_id>/raise_bid/', views.raise_bid, name='raise_bid'),
     path('products/', views.products, name='products'),
 
+    path('auctions_dashboard/', views.my_auctions_panel, name='my_auctions_panel'),
+    path('my_auctions/', views.all_user_auction, name='all_user_auction'),
+
+    path('auction_panel/', views.create_auctions_panel, name='create_auctions_panel'),
+    path('product_panel/', views.create_product_panel, name='create_product_panel'),
+
+    path('create_auction/', views.create_auction, name='create_auction'),
+    path('create_product/', views.create_product, name='create_product'),
+
 ]
