@@ -17,6 +17,7 @@ from website.models import Product, Auction, Watchlist, Bid, Chat, UserDetails
 
 from website.validation import validate_login, validate_registration, session_check
 from website.transactions import increase_bid, remaining_time
+from .forms import TopUpForm
 
 
 
@@ -304,19 +305,19 @@ def topup(request):
     Function : index(request)
         If the user is not logged in.
     """
-    # if request.method == 'POST':
-    #     form = TopUpForm(request.POST)
-    #     if form.is_valid():
-    #         try:
-    #             if request.session['username']:
-    #                 user = User.objects.get(username=request.session['username'])
-    #                 userDetails = UserDetails.objects.get(user_id=user.id)
-    #                 userDetails.balance += form.cleaned_data['amount']
-    #                 userDetails.save()
-    #         except KeyError:
-    #             return index(request)
+    if request.method == 'POST':
+        form = TopUpForm(request.POST)
+        if form.is_valid():
+            try:
+                if request.session['username']:
+                    user = User.objects.get(username=request.session['username'])
+                    userDetails = UserDetails.objects.get(user_id=user.id)
+                    userDetails.balance += form.cleaned_data['amount']
+                    userDetails.save()
+            except KeyError:
+                return index(request)
 
-    # return index(request)
+    return index(request)
 
 
 def filter_auctions(request, category):
