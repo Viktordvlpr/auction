@@ -1,3 +1,4 @@
+<!-- products.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,17 +35,18 @@
                     </div>
                     <p class="card-text">{{ auction.product_id.description }}</p>
                     {% if todays_date > auction.time_starting|date:'Y-m-d-H-i-s' %}
-                    <h4 class="card-title text-center">€{{auction|current_price}}</h4>
+                    <h4 class="card-title text-center">Starting Price: €{{ auction.starting_price }}</h4> <!-- Отображение начальной цены -->
+<!--                    <h4 class="card-title text-center">Current Price: €{{ auction|current_price }}</h4>-->
                     {% endif %}
-                    <p class="card-text"><small class="text-muted"> 
+                    <p class="card-text"><small class="text-muted">
                     {% if todays_date > auction.time_starting|date:'Y-m-d-H-i-s' %}
                     Auction ends in: {{ auction.time_ending|time_left }}
                     {% else %}
                     Auction starts: {{ auction.time_starting|date:'d-m-Y H:i:s' }}
                     {% endif %}
-                    
+
                     </small></p>
-                    
+
                     {% if todays_date > auction.time_starting|date:'Y-m-d-H-i-s' %}
                     <div>
                         <!-- BID NOW BUTTON -->

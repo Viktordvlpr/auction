@@ -1,15 +1,16 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+# views.py
+from django.shortcuts import render
+from .models import Auction
 from django.utils import timezone
 from datetime import datetime
 from itertools import chain
-
-from website.forms import *
-from website.models import Product, Auction, Watchlist, Bid, Chat, UserDetails
-
-from website.validation import validate_login, validate_registration
-from website.transactions import increase_bid, remaining_time
+from .forms import *
+from .models import Product, Auction, Watchlist, Bid, Chat, UserDetails
+from .validation import validate_login, validate_registration
+from .transactions import increase_bid, remaining_time
 
 
 def index(request):
@@ -35,7 +36,7 @@ def index(request):
 
 
 def bid_page(request, auction_id):
-    """
+    """`
     Returns the bid page for the
     selected auction.
 
@@ -100,13 +101,15 @@ def bid_page(request, auction_id):
                               'user': user,  # Remove [0] here
                               'stats': stats,
                               'watchlist': watchlist,
-                              'balance': balance
+                              'balance': balance,
+                              'number_of_bids': auction[0].number_of_bids,  # Pass the number_of_bids value to the template
                           })
 
     except KeyError:
         return index(request)
 
     return index(request)
+
 
 
 def comment(request, auction_id):
@@ -141,6 +144,10 @@ def comment(request, auction_id):
 
     return index(request)
 
+
+# website/views.py
+
+# website/views.py
 
 def raise_bid(request, auction_id):
     """
@@ -177,11 +184,17 @@ def raise_bid(request, auction_id):
                     if current_winner[0].id != user.id:
                         increase_bid(user, auction)
 
-            return bid_page(request, auction_id)
+            # Удалите передачу аргумента starting_price
+            return bid_page(request, auction_id)  # Убедитесь, что не передается starting_price
     except KeyError:
         return index(request)
 
     return bid_page(request, auction_id)
+
+
+
+
+
 
 
 
@@ -450,11 +463,30 @@ def logout_page(request):
     return index(request)
 
 
-# views.py
-from django.shortcuts import render
-from website.models import Auction
-
-
 def products(request):
-    auctions = Auction.objects.all()  # Query your Auction objects here
+    auctions = Auction.objects.all()  # Запросите ваши объекты Auction здесь
+    for auction in auctions:
+        auction.starting_price = auction.product_id.price  # Передайте цену товара в контекст аукциона
     return render(request, 'products.html', {'auctions': auctions})
+
+
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('website:index')  # Redirect to the index page or wherever you want
+    else:
+        form = ProductForm()
+    return render(request, 'create_product.html', {'form': form})
+
+
+def create_auction(request):
+    if request.method == 'POST':
+        form = AuctionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('website:index')  # Redirect to the index page or wherever you want
+    else:
+        form = AuctionForm()
+    return render(request, 'create_auction.html', {'form': form})

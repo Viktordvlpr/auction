@@ -45,6 +45,8 @@ class Auction(models.Model):
     number_of_bids = models.IntegerField()
     time_starting = models.DateTimeField()
     time_ending = models.DateTimeField()
+    description = models.TextField()
+    starting_price = models.IntegerField()
 
     def __str__(self):
         return "ID:" + str(self.pk) + " PRODUCT_ID:" + str(self.product_id)

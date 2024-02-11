@@ -26,9 +26,9 @@
                             {% endif %}
                         </tr>
                         <tr>
-                            <td><small>Current bit:</small></td>
-                            <td><b>EU {{stats.1}}€</b></td>
-                            <td><small>[ {{ auction.number_of_bids }} bids ]</small></td>
+                            <td><small>Starting bid:</small></td>
+                            <td><b>EU {{ auction.starting_price }}€</b></td> <!-- Замените starting_price на auction.starting_price -->
+                            <td><small>[ {{ number_of_bids }} bids ]</small></td> <!-- Use number_of_bids here -->
                         </tr>
                     </tbody>
                 </table>
