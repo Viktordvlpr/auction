@@ -15,8 +15,8 @@
       <form method="post" action="/website/create_auction/">
         {% csrf_token %}
         <div class="form-group">
-          <label for="id_product">Product:</label>
-          <select class="form-control" id="id_product" name="product">
+          <label for="id_product_id">Product:</label>
+          <select class="form-control" id="id_product_id" name="product_id" required>
             {% for product in user_products %}
             <option value="{{ product.id }}">{{ product.title }}</option>
             {% endfor %}
@@ -29,6 +29,7 @@
             class="form-control"
             id="id_number_of_bids"
             name="number_of_bids"
+            required
           />
         </div>
         <div class="form-group">
@@ -38,6 +39,7 @@
             class="form-control"
             id="id_time_starting"
             name="time_starting"
+            required
           />
         </div>
         <div class="form-group">
@@ -47,6 +49,7 @@
             class="form-control"
             id="id_time_ending"
             name="time_ending"
+            required
           />
         </div>
         <button type="submit" class="btn btn-primary">Create Auction</button>
