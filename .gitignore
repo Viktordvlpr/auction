@@ -18,3 +18,7 @@ __pycache__
 poetry.lock
 /node_modules/
 *.lock
+
+### Other ###
+images/
+migrations/

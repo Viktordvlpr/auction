@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 from django.utils import timezone
+from django.http import HttpResponseForbidden
 from datetime import datetime
 from itertools import chain
 
@@ -10,6 +12,7 @@ from website.models import Product, Auction, Watchlist, Bid, Chat, UserDetails
 
 from website.validation import validate_login, validate_registration
 from website.transactions import increase_bid, remaining_time
+
 
 
 def index(request):
@@ -296,19 +299,19 @@ def topup(request):
     Function : index(request)
         If the user is not logged in.
     """
-    if request.method == 'POST':
-        form = TopUpForm(request.POST)
-        if form.is_valid():
-            try:
-                if request.session['username']:
-                    user = User.objects.get(username=request.session['username'])
-                    userDetails = UserDetails.objects.get(user_id=user.id)
-                    userDetails.balance += form.cleaned_data['amount']
-                    userDetails.save()
-            except KeyError:
-                return index(request)
+    # if request.method == 'POST':
+    #     form = TopUpForm(request.POST)
+    #     if form.is_valid():
+    #         try:
+    #             if request.session['username']:
+    #                 user = User.objects.get(username=request.session['username'])
+    #                 userDetails = UserDetails.objects.get(user_id=user.id)
+    #                 userDetails.balance += form.cleaned_data['amount']
+    #                 userDetails.save()
+    #         except KeyError:
+    #             return index(request)
 
-    return index(request)
+    # return index(request)
 
 
 def filter_auctions(request, category):
@@ -431,6 +434,7 @@ def login_page(request):
             if is_valid:
                 # Creates a session with 'form.username' as key.
                 request.session['username'] = form.cleaned_data['username']
+                
     return index(request)
 
 
@@ -459,6 +463,149 @@ def products(request):
     auctions = Auction.objects.all()  # Query your Auction objects here
     return render(request, 'products.html', {'auctions': auctions})
 
-
+@login_required
 def my_auctions_panel(request):
-    return render(request, 'my_auctions_panel.html')
+    """
+    Render the 'my_auctions_panel.html' template.
+
+    This function assumes there's a template named 'my_auctions_panel.html'
+    defined. It doesn't take any specific arguments and simply renders the
+    template.
+
+    Args:
+        request (HttpRequest): The Django request object.
+
+    Returns:
+        HttpResponse: The rendered template response.
+    """
+    return render(request, 'auctions_panel/dashboard.html')
+
+@login_required
+def create_auctions_panel(request):
+    """
+    Render the 'auction_panel.html' template.
+
+    This function assumes there's a template named 'auction_panel.html'
+    defined. It doesn't take any specific arguments and simply renders the
+    template.
+
+    Args:
+        request (HttpRequest): The Django request object.
+
+    Returns:
+        HttpResponse: The rendered template response.
+    """
+    return render(request, 'auctions_panel/auction_panel.html')
+
+@login_required
+def create_product_panel(request):
+    """
+    Render the 'product_panel.html' template.
+
+    This function assumes there's a template named 'product_panel.html'
+    defined. It doesn't take any specific arguments and simply renders the
+    template.
+
+    Args:
+        request (HttpRequest): The Django request object.
+
+    Returns:
+        HttpResponse: The rendered template response.
+    """
+    return render(request, 'auctions_panel/product_panel.html')
+
+@login_required
+def create_auction(request):
+    """
+    Create a new auction if the request is a POST and the form is valid.
+
+    This function handles POST requests with a ProductForm. If the form is
+    valid, it creates a new Auction object, associates it with the current
+    user, and saves it. Otherwise, it returns an empty form.
+
+    Args:
+        request (HttpRequest): The Django request object.
+
+    Returns:
+        HttpResponse: A redirect to 'my_actions_panel' or the rendered
+                      'auction_panel.html' template with the form.
+    """
+    
+    if request.method == "POST":
+        form = AuctionForm(request.POST, request.FILES)
+        if form.is_valid():
+            auction = form.save(commit=False)
+            auction.owner = request.session['username']
+            auction.save()
+            return redirect('my_actions_panel')
+        else: 
+            return HttpResponseBadRequest("Invalid form data")
+    else:
+        return HttpResponseBadRequest("User not authenticated")
+            
+    return render(request, 'auctions_panel/dashboard.html', {'form': form})
+
+def all_user_auction(request):
+    """
+    Retrieve all auctions owned by the current user.
+
+    This function fetches all Auction objects from the database where the
+    owner field matches the current user. It then renders the 'my_auctions.html'
+    template with the retrieved auctions.
+
+    Args:
+        request (HttpRequest): The Django request object.
+
+    Returns:
+        HttpResponse: The rendered 'my_auctions.html' template with the
+                      user's auctions.
+    """
+    user_auctions = Auction.objects.filter(owner=request.user)
+    return render(request, 'auctions_panel/my_auctions.html', {'user_auctions': user_auctions})
+
+@login_required
+def create_product(request):
+    """
+    Create a new product if the request is a POST and the form is valid.
+
+    This function handles POST requests with a ProductForm. If the form is
+    valid, it creates a new Product object and saves it.
+
+    Args:
+        request (HttpRequest): The Django request object.
+
+    Returns:
+        HttpResponse: A redirect to 'my_auctions_panel' or an error response.
+    """
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        print(request.user)
+        print(request.session['username'])
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.owner = request.user
+            product.save()
+            return redirect('/website/my_auctions/')
+        else:
+            return HttpResponseForbidden("Invalid form data")
+    else:
+        return HttpResponseForbidden("User not authenticated")
+
+def my_products(request):
+    """
+    Retrieve all products owned by the current user.
+
+    This function fetches all Product objects from the database where the
+    owner field matches the current user. It then renders the 'auction_panel.html'
+    template with the retrieved products.
+
+    Args:
+        request (HttpRequest): The Django request object.
+
+    Returns:
+        HttpResponse: The rendered 'auction_panel.html' template with the
+                      user's products.
+    """
+    user_products = Product.objects.filter(owner=request.user)
+    return render(request, 'auctions_panel/auction_panel.html', {'user_products': user_products})
+    

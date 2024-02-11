@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Auctions Panel</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="mt-5">Create Auction</h2>
+      <form method="post" action="/website/create_auction/">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_product">Product:</label>
+          <select class="form-control" id="id_product" name="product">
+            {% for product in user_products %}
+            <option value="{{ product.id }}">{{ product.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_number_of_bids">Number of Bids:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="id_number_of_bids"
+            name="number_of_bids"
+          />
+        </div>
+        <div class="form-group">
+          <label for="id_time_starting">Starting Time:</label>
+          <input
+            type="datetime-local"
+            class="form-control"
+            id="id_time_starting"
+            name="time_starting"
+          />
+        </div>
+        <div class="form-group">
+          <label for="id_time_ending">Ending Time:</label>
+          <input
+            type="datetime-local"
+            class="form-control"
+            id="id_time_ending"
+            name="time_ending"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Create Auction</button>
+      </form>
+    </div>
+  </body>
+</html>
