@@ -101,4 +101,38 @@
 .footer-distributed .footer-left .footer-links{
 	margin: 10px 0 15px 0 !important;
 }
+@media(max-width: 1023px) {
+    .footer-distributed {
+        flex-direction: column !important;
+		border-radius: 15% 15% 0 0;
+    }
+
+	.footer-distributed .footer-left {
+			    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	}
+	.footer-distributed .footer-left  #footer-left{
+		margin: 0 !important;
+	}
+	.footer-distributed .footer-center {
+		margin: 50px 0;
+	}
+	.footer-distributed{
+		    padding: 40px 20px 20px 20px !important;
+	}
+	.footer-distributed .footer-left #footer-left a{
+    	margin: 0 !important;
+		width: 100%;
+	}
+		.footer-distributed .footer-left #footer-left a img{
+    	margin: 0 !important;
+		width: 100%;
+	}
+
+}
+
+
+
 

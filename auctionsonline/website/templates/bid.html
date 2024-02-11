@@ -7,9 +7,9 @@
 <body>
 {% extends 'index.html' %}
 {% block body %}
-<div id="bid-flexbox" class="d-flex flex-row">
+<div id="bid-flexbox" class="d-flex flex-row product-single">
     <div class="p-2"><img id="preview_product" src="/media/{{ auction.product_id.image }}" /></div>
-    <div class="p-2">
+    <div class="p-2 single--product">
         <!-- Display balance -->
 <!--        <p>Balance: {{ balance }}</p>-->
 
@@ -43,12 +43,12 @@
                     {% load custom_tags %}
                     {% if watchlist %}
                         {% if watchlist|search:auction.id%}
-                            Unwatch
+                            Unlike
                         {% else %}
-                            Watch
+                            Like
                         {% endif %}
                     {% else %}
-                        Watch
+                        Like
                     {% endif %}
                 </button>
             </div>
@@ -62,11 +62,10 @@
 
         <form method="post" action="/website/bid/{{auction.id}}/comment/">{% csrf_token %}
         <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="2" id="comment" name="comment"></textarea>
+            <textarea placeholder="Enter message" class="form-control" rows="2" id="comment" name="comment"></textarea>
         </div>
 
-        <button id="post_button" type="submit" class="btn btn-outline-primary">Post Comment</button>
+        <button id="post_button" type="submit" class="chat-btn btn btn-outline-primary ">Send message</button>
         </form>
     </div>
 </div>

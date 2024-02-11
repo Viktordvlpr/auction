@@ -46,3 +46,17 @@
 {
     width: 100%;
 }
+.product-single{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.product-single .p2 {
+    width: 100% !important;
+    padding: 0 !important;
+}
+.product-single .single--product {
+    display: flex;
+    flex-direction: column;
+}

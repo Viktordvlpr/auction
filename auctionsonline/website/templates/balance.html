@@ -11,18 +11,18 @@
 <body>
 {% extends 'index.html' %}
 {% block body %}
-    <div id="upba">
+    <div id="upba" class="balance-text">
         <h2>Update your Balance</h2>
         <hr>
     </div>
 
-    <div>
+    <div class="balance-text">
         <p>Your current balance is: {{ balance }}</p> <!-- Add this line to display the current balance -->
     </div>
 
     <form id="topupform" method="post" action="/website/balance/topup/">{% csrf_token %}
         <div class="form-group">
-            <label for="sel1">Select an amount to top-up your balance:</label>
+            <label for="sel1" class="balance-text">Select an amount to top-up your balance:</label>
             <select class="form-control" id="sel1" name="amount">
                 <option value="10.00">10€</option>
                 <option value="20.00">20€</option>
@@ -30,7 +30,7 @@
             </select>
             <br>
         </div>
-        <button id="subbut" type="submit" class="btn btn-primary col-sm-12" value="topup">Top Up</button>
+        <button id="subbut" type="submit" class="balance-btn btn btn-primary col-sm-12" value="topup">Top Up</button>
     </form>
 {% endblock %}
 </body>

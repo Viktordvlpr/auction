@@ -83,10 +83,14 @@ body {
    background-color: #8B6849;
     padding: 30px;
     border-radius: 30px;
+    height: 100%;
 }
 .main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body {
     padding: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 }
 .main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body .like-btn{
     padding: 0;
@@ -152,6 +156,277 @@ body {
     border-radius: 15px;
     padding: 10px 15px;
 }
+.main-products .p-2 #replacement  .container-fluid .carousel-item .card .card-body img{
+    height: auto;
+    object-fit: contain;
+}
 
 
+@media(max-width: 1480px) {
+    .nav-header {
+        flex-flow: column;
+            flex-flow: wrap;
+    }
+    .nav-header #left_navbar {
+        width: 50%;
 
+    }
+    .nav-header .nav-end {
+    width: 50%;
+        order: 1;
+    }
+    .nav-header .nav-mid {
+        order: 2;
+        margin-top: 20px;
+    }
+    #replacement .carousel-item {
+        min-width: 350px;
+        margin-bottom: 40px;
+    }
+    #replacement .carousel-inner {
+        justify-content: center;
+        margin: 0;
+    }
+}
+@media(max-width: 1023px) {
+    .nav-header #left_navbar {
+        width: 100%;
+        justify-content: center;
+
+    }
+    /*.nav-header #left_navbar img{*/
+    /*    width: 250px;*/
+
+    /*}*/
+    .nav-header .nav-end {
+        width: auto;
+    }
+    .nav-header {
+        flex-direction: column;
+    }
+    .nav-header .nav-end{
+        margin: 30px 0 !important;
+        justify-content: center;
+    }
+    .nav-header {
+        background-color: #8B6849;
+        border-radius: 0 0 15% 15%;
+        padding: 40px 20px 30px 20px;
+    }
+    .product-single {
+        flex-direction: column !important;
+    }
+    .product-single #preview_product {
+    margin: 0 0 0 0 !important;
+
+}
+
+}
+@media(max-width: 767px) {
+.nav-header .nav-end a {
+    color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin: 0 5px;
+    padding: 5px 10px !important;
+}
+    .main-products {
+    width: 100%;
+    padding: 40px 20px;
+}
+    #replacement .carousel-item {
+    min-width: 250px;
+    margin-bottom: 40px;
+        max-width: 350px;
+}
+.nav-header #left_navbar {
+    width: 100%;
+    max-width: 250px;
+}
+.nav-header #left_navbar a{
+    width: 100%;
+}
+.nav-header #left_navbar a img{
+    width: 100%;
+}
+.nav-header .nav-end {
+    margin: 30px 0 10px 0 !important;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.nav-header .nav-end {
+        width: 100%;
+}
+.nav-header .nav-end .nav-item{
+        margin: 5px 0;
+}
+.jumbotron {
+    padding: 4rem 1rem;
+}
+}
+#myModal .link-part{
+    display: none;
+}
+#myModal  .modal-content {
+    background-color: #351D0F !important;
+    border: none;
+}
+#myModal  .modal-content .close{
+    text-shadow: none;
+    color: white;
+    opacity: 1;
+}
+#myModal  .modal-content h1{
+    color: white;
+    opacity: 1;
+}
+#myModal  .modal-content .btn-primary {
+    color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 7.5px 20px !important;
+    background-color: transparent;
+}
+#myModal  .modal-content input {
+
+    border-radius: 15px;
+
+}
+#myCarousel .card {
+    max-width: 350px;
+}
+.main-products .p-2{
+    display: flex;
+    justify-content: center;
+}
+
+
+.product-single #preview_product {
+    margin: 0 40px 0 0 !important;
+
+}
+.product-single #bidding {
+    background-color: #8B6849 !important;
+    border-radius: 15px;
+}
+.product-single #bidding .table td, .table th {
+    border: none;
+    color: white;
+}
+.product-single #bidding  button {
+     color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin: 0 7.5px;
+    padding: 7.5px 20px !important;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+.product-single #comments {
+    background-color: #8B6849 !important;
+    color: white;
+        border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+.product-single .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: white;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid white;
+    background-color: transparent;
+    border-radius: 15px;
+    transition: none;
+}
+.product-single .chat-btn {
+     color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 7.5px 20px !important;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+@media(max-width: 1023px) {
+    .nav-header #left_navbar {
+        width: 100%;
+        justify-content: center;
+
+    }
+    /*.nav-header #left_navbar img{*/
+    /*    width: 250px;*/
+
+    /*}*/
+    .nav-header .nav-end {
+        width: auto;
+    }
+    .nav-header {
+        flex-direction: column;
+    }
+    .nav-header .nav-end{
+        margin: 30px 0 !important;
+        justify-content: center;
+    }
+    .nav-header {
+        background-color: #8B6849;
+        border-radius: 0 0 15% 15%;
+        padding: 40px 20px 30px 20px;
+    }
+    .product-single {
+        flex-direction: column !important;
+    }
+    .product-single #preview_product {
+    margin: 0 0 0 0 !important;
+
+}
+    .product-single #comments {
+        width: 100%;
+}
+    #replacement {
+        width: 100%;
+    }
+
+}
+.product-single #preview_product {
+    width: 100% !important;
+}
+/*.product-single #comments {*/
+/*    width: 100%;*/
+/*}*/
+#comments {
+    width: 538px;
+
+}
+.balance-text{
+    color: white;
+}
+.balance-btn{
+         color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 7.5px 20px !important;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+.balance-btn:hover{
+         color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 7.5px 20px !important;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+#reg{
+    color: white;
+}
