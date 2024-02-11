@@ -335,30 +335,30 @@ def filter_auctions(request, category):
          If the user is not logged in.
     """
     f_auctions = []
-    if category == "laptops":
+    if category == "books":
         f_auctions = Auction.objects.filter(
-            time_ending__gte=datetime.now(), product_id__category="LAP"
+            time_ending__gte=datetime.now(), product_id__category="BOK"
         ).order_by('time_starting')
 
-    elif category == "consoles":
+    elif category == "toys":
         f_auctions = Auction.objects.filter(
-            time_ending__gte=datetime.now(), product_id__category="CON"
+            time_ending__gte=datetime.now(), product_id__category="TOY"
         ).order_by('time_starting')
 
-    elif category == "games":
+    elif category == "films":
         f_auctions = Auction.objects.filter(
-            time_ending__gte=datetime.now(), product_id__category="GAM"
+            time_ending__gte=datetime.now(), product_id__category="FIL"
         ).order_by('time_starting')
 
-    elif category == "gadgets":
-        f_auctions = Auction.objects.filter(
-            time_ending__gte=datetime.now(), product_id__category="GAD"
-        ).order_by('time_starting')
-
-    elif category == "tvs":
-        f_auctions = Auction.objects.filter(
-            time_ending__gte=datetime.now(), product_id__category="TEL"
-        ).order_by('time_starting')
+    # elif category == "gadgets":
+    #     f_auctions = Auction.objects.filter(
+    #         time_ending__gte=datetime.now(), product_id__category="GAD"
+    #     ).order_by('time_starting')
+    #
+    # elif category == "tvs":
+    #     f_auctions = Auction.objects.filter(
+    #         time_ending__gte=datetime.now(), product_id__category="TEL"
+    #     ).order_by('time_starting')
 
     try:
         if request.session['username']:

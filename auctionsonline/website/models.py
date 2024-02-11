@@ -19,11 +19,11 @@ class UserDetails(models.Model):
 
 class Product(models.Model):
     CATEGORIES = (
-        ('LAP', 'Laptop'),
-        ('CON', 'Console'),
-        ('GAD', 'Gadget'),
-        ('GAM', 'Game'),
-        ('TEL', 'TV')
+        ('BOK', 'Books'),
+        ('TOY', 'Toys'),
+        ('FIL', 'Films'),
+        # ('GAM', 'Game'),
+        # ('TEL', 'TV')
     )
 
     title = models.CharField(max_length=255)
