@@ -6,7 +6,13 @@ from django.http import HttpResponseForbidden, HttpResponseBadRequest
 from datetime import datetime
 from itertools import chain
 
-from website.forms import *
+from website.forms import (
+    AuctionForm, 
+    ProductForm, 
+    CommentForm, 
+    RegistrationForm, 
+    LoginForm
+)
 from website.models import Product, Auction, Watchlist, Bid, Chat, UserDetails
 
 from website.validation import validate_login, validate_registration, session_check
@@ -530,19 +536,19 @@ def create_auction(request):
         HttpResponse: A redirect to 'my_actions_panel' or the rendered
                       'auction_panel.html' template with the form.
     """
-    
     if request.method == "POST":
         form = AuctionForm(request.POST, request.FILES)
         if form.is_valid():
             auction = form.save(commit=False)
             user_id = request.session.get('user_id')
+            print(user_id)
             if user_id:
                 user = User.objects.get(pk=user_id)
                 auction.owner = user 
                 auction.save()
                 return redirect('/website/auctions_dashboard/')
         else: 
-            return redirect("/website/auctions_dashboard/")
+            return redirect("/website/")
     else:
         return HttpResponseBadRequest("User not authenticated")
             
