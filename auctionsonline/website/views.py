@@ -541,7 +541,6 @@ def create_auction(request):
         if form.is_valid():
             auction = form.save(commit=False)
             user_id = request.session.get('user_id')
-            print(user_id)
             if user_id:
                 user = User.objects.get(pk=user_id)
                 auction.owner = user 
