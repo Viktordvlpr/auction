@@ -1,3 +1,60 @@
 /*body{*/
 /*    background-color: red;*/
 /*}*/
+/*body{*/
+/*    background-color: red;*/
+/*}*/
+body{
+    min-height: 100vh;
+        background-color: #351D0F !important;
+    color: white !important;
+}
+body a.text-dark{
+    color: white !important;
+    text-decoration: none !important;
+             color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 7.5px 20px !important;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+body a.text-dark:hover{
+    color: white !important;
+    text-decoration: none !important;
+             color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 7.5px 20px !important;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+.auction-panel .row{
+   display: flex;
+    justify-content: center;
+}
+.auction-panel .row .col{
+   display: flex;
+    justify-content: center;
+}
+@media(max-width: 767px) {
+   .auction-panel .row{
+   display: flex;
+       flex-direction: column;
+    justify-content: center;
+}
+    .auction-panel .row .col{
+    margin: 10px 0;
+}
+}
+.chat-btn {
+     color: white !important;
+    font-size: 16px !important;
+    border: 1px solid white !important;
+    border-radius: 15px !important;
+    padding: 7.5px 20px !important;
+    background-color: transparent !important;
+    margin-bottom: 10px !important;
+}
