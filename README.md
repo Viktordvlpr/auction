@@ -14,36 +14,6 @@ This is a README file for the Auction project, which is developed using Python, 
 
 - **CSS**: CSS (Cascading Style Sheets) is used for styling the HTML elements and enhancing the visual appearance of web pages in the Auction project.
 
-### Project Structure:
-
-The project structure of the Auction project is as follows:
-
-```
-auction_project/
-│
-├───auction_app/
-│   ├───migrations/
-│   ├───static/
-│   │   └───css/
-│   │   └───js/
-│   ├───templates/
-│   │   └───auction_app/
-│   │       └───html_files/
-│   ├───__init__.py
-│   ├───admin.py
-│   ├───apps.py
-│   ├───models.py
-│   ├───tests.py
-│   └───views.py
-│
-├───auction_project/
-│   ├───settings.py
-│   ├───urls.py
-│   └───wsgi.py
-│
-└───README.md
-```
-
 ### Installation:
 
 To run the Auction project locally, follow these steps:
@@ -51,13 +21,13 @@ To run the Auction project locally, follow these steps:
 1. Clone the repository:
 
 ```
-git clone https://github.com/your_username/auction_project.git
+git clone https://github.com/Viktordvlpr/auction.git
 ```
 
 2. Navigate to the project directory:
 
 ```
-cd auction_project
+cd auction
 ```
 
 3. Install the required dependencies:
