@@ -9,7 +9,10 @@ body {
     border-radius: 0 0 30% 30%;
     padding: 20px 60px 30px 60px;
 }
-
+#myCarousel .card-title, .card-text {
+    height: auto !important;
+    overflow: hidden !important;
+}
 .nav-header .navbar-brand {
     width: 100%;
     margin: 0;
@@ -46,8 +49,8 @@ body {
     font-size: 16px;
     border: 1px solid white;
     border-radius: 15px;
-    margin: 0 7.5px;
-    padding: 7.5px 20px !important;
+    margin: 0 5px;
+    padding: 5px 10px !important;
 }
 
         
