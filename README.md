@@ -27,7 +27,7 @@ git clone https://github.com/Viktordvlpr/auction.git
 2. Navigate to the project directory:
 
 ```
-cd auction
+cd auctionsonline
 ```
 
 3. Install the required dependencies:
